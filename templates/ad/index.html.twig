@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos annonces{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="mb-4">Nos annonces</h1>
+    <div class="row">
+        {% for ad in ads %}
+        <div class="col-md-4">
+            <a href="/ads/{{ad.slug}}"><div class="card mb-3">
+            <div class="mb-3"><img src="{{ ad.coverImage }}" style="width:100%"></div>
+                <div class="p-3">
+                    <p class="display-4 text-center" style="font-size:1rem;">{{ ad.title }}</p>
+                    <p class="display-6">{{ad.rooms}} chambres - {{ad.price}}€</p>
+                    <p>{{ ad.introduction }}</p>
+                </div>
+            </div></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .card:hover
+    {
+-webkit-box-shadow: 0px 0px 29px -12px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 29px -12px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 29px -12px rgba(0,0,0,0.75);
+        transition:0.5s;
+    }
+    .card
+    {
+        transition:0.5s;
+    }
+    a:link
+    {
+        text-decoration:none;
+        color:black;
+    }
+    a:visited
+    {
+        color:black;
+    }
+
+</style>
+{% endblock %}

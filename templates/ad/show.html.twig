@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ad.title }}{% endblock %}
+
+{% block body %}
+<h1 class="mb-4 pt-5 pb-5 text-center" id="titre" style="background-image:url('{{ad.coverImage}}');width:100%;">{{ ad.title }}</h1>
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-header display-6">{{ad.rooms}} chambres - {{ad.price}}€</div>
+        <div class="p-3">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for image in ad.images %}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{loop.index}}" {% if loop.first %}class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for image in ad.images %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <img class="d-block w-100" style="height:400px;" src="{{image.url}}" alt="{{image.caption}}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ad.title}}</h5>
+                                <p>{{image.caption}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <p class="mt-3">{{ ad.content }}</p>
+            <button class="btn btn-primary float-right">Reserver</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7"></div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-2" style="vertical-align:center;"><img src="http://placehold.it/50x50" alt="Photo de profil"></div>
+                <div class="col" style="vertical-align:center;"><h3>Joseph Dupont</h3><span class="badge badge-primary">1 annonce</span></div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+#titre, .carousel-caption
+{
+    color:white;
+    text-shadow:3px 3px 3px black;
+}
+</style>
+{% endblock %}
